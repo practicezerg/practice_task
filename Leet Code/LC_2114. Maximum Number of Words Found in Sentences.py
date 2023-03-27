@@ -1,17 +1,18 @@
-def work(s, indices):
-    q = {}
-    x = -1
-    for i in s:
-        q[indices[x+1]] = i
-        x+=1
-    res = ""
-    for i in range(len(s)):
-        res = res + q[i]
-    return res
+"""
+A sentence is a list of words that are separated by a single space with no leading or trailing spaces.
+You are given an array of strings sentences, where each sentences[i] represents a single sentence.
+Return the maximum number of words that appear in a single sentence.
+"""
+
+def work(sentences):
+    l = []
+    for i in sentences:
+        try1 = i.split(" ")
+        l.append(len(try1))
+    return max(l)
 
 
 
-s = "codeleet"
-indices = [4, 5, 6, 7, 0, 2, 1, 3]
-res = work(s, indices)
+sentences = ["alice and bob love leetcode", "i think so too", "this is great thanks very much"]
+res = work(sentences)
 print(res)
