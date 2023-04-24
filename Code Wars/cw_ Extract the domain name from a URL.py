@@ -1,27 +1,35 @@
 """Write a function that when given a URL as a string, parses out just the domain name and returns it as a string.
  For example:"""
+import re
+
+def mine(url):
+    print(url)
+    url = url.lstrip("https://www.")
+
+    print(url)
+
+
+
+
 def domain_name(url):
-    num = url.count(".")
-    num_pos_1st_dot = url.index('.')
-    res = ""
-    if num > 1:
-        num_dot = 0
-        for i in url:
-            if i == ".":
-                num_dot += 1
-                if num_dot == 2:
-                    print("Две точки! Руби")
-                    print(url[num_pos_1st_dot+1:])
-                    return res[num_pos_1st_dot+1:]
-            res = res + i
+    if url.startswith("https://www.") == True:
+        url = url.replace("https://www.","")
+        num_pos_1st_dot = url.index('.')
+        return url[:num_pos_1st_dot]
+    elif url.startswith("http://www.") == True:
+        url = url.replace("http://www.", "")
+        num_pos_1st_dot = url.index('.')
+        return url[:num_pos_1st_dot]
     else:
-        print("точка одна")
-        print(url[:num_pos_1st_dot])
+        url = url.replace("www.", "")
+        num_pos_1st_dot = url.index('.')
+        return url[:num_pos_1st_dot]
 
-        return url[:num_pos_1st_dot].lstrip("http://")
 
-
-url = "http://github.com/carbonfive/raygun"
+url = "http://google.co.jp"
+# url = "http://google.com"
+# url = "http://github.com/carbonfive/raygun"
 # url = "http://www.zombie-bites.com"
 res = domain_name(url)
+# res = mine(url)
 print(res)
